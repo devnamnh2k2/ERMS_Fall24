@@ -1,0 +1,138 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="title"
+  [nzMaskClosable]="true"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  [nzWidth]="'700px'"
+>
+  <ng-container *nzModalContent>
+    <ng-container
+      *ngIf="order && order.orderDetails && order.orderDetails.length"
+    >
+      <div *ngFor="let pro of order.orderDetails; let i = index">
+        <div class="py-3 cursor-pointer">
+          <div
+            class="flex justify-start gap-8 border-solid border-2 border-zinc-300 p-2 rounded"
+          >
+            <img
+              class="rounded object-cover"
+              [src]="pro.product.productImages[0].link"
+              alt="anh san pham"
+              [width]="80"
+              [height]="50"
+            />
+            <div class="mt-2">
+              <h2 class="title font-semibold text-base uppercase">
+                {{ pro.product.productName }}
+              </h2>
+              <div
+                class="grid grid-cols-2 gap-10 text-zinc-500 text-xs font-medium py-3"
+              >
+                <div class="columns-2 gap-6">
+                  <p>SỐ LƯỢNG:</p>
+                  <p class="font-normal">{{ pro.quantity }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rating input for each product -->
+        <div class="my-5">
+          <div class="columns-3 gap-2">
+            <h3 class="font-medium text-lg">Chất Lượng</h3>
+            <nz-rate
+              [(ngModel)]="feedBackList[i].rating"
+              (ngModelChange)="onRatingChange(i, $event)"
+            ></nz-rate>
+            <p
+              class="p-2"
+              [ngClass]="{ 'text-yellow-300': feedBackList[i].rating >= 4 }"
+            >
+              {{ ratingName[feedBackList[i].rating - 1] }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Review input for each product -->
+        <div class="my-5">
+          <h3 class="font-medium text-lg mb-2">Đánh Giá (Bắt buộc)</h3>
+          <div class="flex justify-between flex-wrap my-3">
+            <button
+              class="w-24 mt-3 rounded-xl text-wrap btn"
+              nz-button
+              type="button"
+              (click)="setMessage('Sản phẩm tuyệt vời 😍', i)"
+            >
+              Sản phẩm tuyệt vời 😍
+            </button>
+            <button
+              class="w-24 mt-3 rounded-xl text-wrap btn"
+              nz-button
+              type="button"
+              (click)="setMessage('Shop nhiệt tình, chủ shop thân thiện 👌', i)"
+            >
+              Shop nhiệt tình, chủ shop thân thiện 👌
+            </button>
+            <button
+              class="w-24 mt-3 rounded-xl text-wrap btn"
+              nz-button
+              type="button"
+              (click)="
+                setMessage(
+                  'Dịch vụ rất tuyệt vời, mọi thứ đều như mong đợi!',
+                  i
+                )
+              "
+            >
+              Dịch vụ rất tuyệt vời, mọi thứ đều như mong đợi!
+            </button>
+            <button
+              class="w-24 mt-3 rounded-xl text-wrap btn"
+              nz-button
+              type="button"
+              (click)="setMessage('Tạm ổn. Hy vọng lần sau tốt hơn', i)"
+            >
+              Tạm ổn. Hy vọng lần sau tốt hơn
+            </button>
+            <button
+              class="w-24 mt-3 rounded-xl text-wrap btn"
+              nz-button
+              type="button"
+              (click)="setMessage('Tệ! Không có lần sau', i)"
+            >
+              Tệ! Không có lần sau
+            </button>
+            <button
+              class="w-24 mt-3 rounded-xl text-wrap btn"
+              nz-button
+              type="button"
+              (click)="
+                setMessage('Chất lượng không như mong đợi, cần cải thiện', i)
+              "
+            >
+              Chất lượng không như mong đợi, cần cải thiện
+            </button>
+          </div>
+          <textarea
+            nz-input
+            placeholder="Đánh Giá Thiết Bị Thuê"
+            [(ngModel)]="feedBackList[i].comment"
+            (ngModelChange)="onCommentChange(i, $event)"
+            [nzAutosize]="{ minRows: 5, maxRows: 8 }"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="flex justify-end mt-8">
+        <button nz-button nzType="primary" (click)="handleCancel()" nzGhost>
+          Trở Lại
+        </button>
+        <button nz-button nzType="primary" class="mx-3" (click)="onSave()">
+          Hoàn Thành
+        </button>
+      </div>
+    </ng-container>
+  </ng-container>
+</nz-modal>

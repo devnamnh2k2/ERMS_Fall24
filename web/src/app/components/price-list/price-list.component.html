@@ -1,0 +1,73 @@
+<h3 class="font-semibold text-lg mb-2">Bảng tính giá</h3>
+<ng-container *ngIf="allProductRental$ | async as allProductRental">
+  
+  <!-- Deposit Price Section -->
+  <div class="mb-2">
+    <h6 class="text-base font-medium leading-6 my-3">
+      <span class="text-red-500">* &nbsp;</span>Giá cọc
+    </h6>
+    <table class="w-full">
+      <tbody>
+        <tr *ngFor="let order of allProductRental">
+          <td>
+            <p>{{ order.productName }}</p>
+          </td>
+          <td>
+            <p>{{ order.depositPrice | currency:'VND':'VND':'1.0-0':'vi' }} x {{ order.quantityRequest }} (số lượng)</p>
+          </td>
+          <td class="text-end">
+            <p class="font-semibold">{{ order.depositActualPrice | currency:'VND':'VND':'1.0-0':'vi' }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Rental Price Section -->
+  <div class="mb-2">
+    <h6 class="text-base font-medium leading-6 my-3">
+      <span class="text-red-500">* &nbsp;</span>Giá thuê
+    </h6>
+    <table class="w-full">
+      <tbody>
+        <tr *ngFor="let order of allProductRental">
+          <td>
+            <p>{{ order.productName }}</p>
+          </td>
+          <td>
+            <p>{{ order.rentalPrice | currency:'VND':'VND':'1.0-0':'vi' }}</p>
+          </td>
+          <td class="text-end">
+            <p class="font-semibold">{{ order.rentalActualPrice | currency:'VND':'VND':'1.0-0':'vi' }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Discount Code Section -->
+  <div class="mb-2"  *ngIf="voucherAvaiable$ | async as voucher">
+    <h6 class="text-base font-medium leading-6 my-3">
+      <span class="text-red-500">* &nbsp;</span>Mã giảm giá
+    </h6>
+    <table class="w-full">
+      <tbody>
+        <tr>
+          <td>
+            <p>Mã {{voucher.code}}</p>
+          </td>
+          <td class="text-end text-red-500">
+            <p class="font-semibold">-{{calcActualDiscountVoucher$ | async | currency:'VND':'VND':'1.0-0':'vi'}}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Total Price Section -->
+  <div class="flex justify-between items-center">
+    <h6 class="font-semibold text-base my-3">Giá thuê sau tính</h6>
+    <p class="font-semibold">{{ calculateTotalAmount(allProductRental, calcActualDiscountVoucher$ | async) | currency:'VND':'VND':'1.0-0':'vi'}}</p>
+  </div>
+
+</ng-container>

@@ -1,0 +1,28 @@
+::ng-deep .ant-modal-header {
+  text-align: center !important;
+}
+
+::ng-deep .ant-modal-content,
+::ng-deep .ant-modal-header {
+  border-radius: 6px !important;
+}
+
+::ng-deep .ant-modal {
+  top: 70px !important;
+}
+::ng-deep .ant-modal-body {
+  overflow-y: auto;
+  max-height: 80vh;
+}
+::ng-deep .ant-modal-wrap {
+  overflow: hidden;
+}
+
+::ng-deep .ant-tag-close-icon {
+  margin-left: 3px;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: black !important;
+}

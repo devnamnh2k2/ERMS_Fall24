@@ -1,0 +1,15 @@
+.radio-option {
+    transition: all 0.2s;
+    &:hover {
+      border-color: #1890ff;
+    }
+  }
+  
+
+  ::ng-deep .ant-image-preview-img { 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+  }
+  

@@ -1,0 +1,99 @@
+<div class="login_wrapper container-fluid min-h-screen">
+  <section
+    class="container_login_form absolute bg-white p-5 rounded-md w-72 sm:w-[500px]"
+  >
+    <div class="image_logo" style="text-align: -webkit-center">
+      <img
+        src="assets/images/logo.png"
+        [routerLink]="['/common/home']"
+        alt="logo_image.png"
+        srcset=""
+        class="w-[6rem]"
+      />
+    </div>
+    <form
+      nz-form
+      [formGroup]="validateForm"
+      class="login-form"
+      (ngSubmit)="submitForm()"
+    >
+      <nz-form-item>
+        <nz-form-label
+          [nzSm]="24"
+          [nzXs]="24"
+          nzRequired
+          nzFor="username"
+          class="text-start"
+          >Tên người dùng</nz-form-label
+        >
+        <nz-form-control
+          [nzSm]="24"
+          [nzXs]="24"
+          nzErrorTip="Vui lòng nhập tên người dùng"
+        >
+          <nz-input-group>
+            <input
+              nz-input
+              formControlName="username"
+              id="username"
+              placeholder="Nhập tên người dùng của bạn"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label
+          [nzSm]="24"
+          [nzXs]="24"
+          nzRequired
+          nzFor="password"
+          class="text-start"
+          >Mật Khẩu</nz-form-label
+        >
+        <nz-form-control nzErrorTip="Vui lòng nhập mật khẩu">
+          <nz-input-group nzPrefixIcon="lock">
+            <input
+              type="password"
+              nz-input
+              formControlName="password"
+              placeholder="Nhập mật khẩu của bạn"
+              name="password"
+              autocomplete="on"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <div nz-row class="login-form-margin">
+        <div nz-col [nzSpan]="12">
+          <span>
+            &nbsp; Bạn là người mới
+            <a
+              routerLink="/auth/register"
+              class="text-blue-400 hover:text-blue-600"
+              >Tạo tài khoản</a
+            >?
+          </span>
+        </div>
+        <div nz-col [nzSpan]="12">
+          <a class="login-form-forgot" routerLink="/auth/forgot-password"
+            >Quên mật khẩu
+          </a>
+        </div>
+      </div>
+      <button
+        nz-button
+        class="login-form-button login-form-margin"
+        [nzType]="'primary'"
+        [nzLoading]="(isProcessLoading$ | async) === 'loading'"
+      >
+        Đăng nhập
+      </button>
+    </form>
+    <!-- <p class="text-center text-gray-600 font-thin text-sm mb-1.5">
+      Đăng nhập bằng cách khác
+    </p>
+    <app-google-signin
+      (loginWithGoogle)="googleSignin($event)"
+    ></app-google-signin> -->
+  </section>
+</div>

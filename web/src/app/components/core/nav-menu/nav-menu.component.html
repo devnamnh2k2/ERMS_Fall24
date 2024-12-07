@@ -1,0 +1,40 @@
+<div class="border border-[#ededed]">
+  <ul nz-menu nzMode="horizontal" class="flex justify-center">
+    <li
+      nz-submenu
+      nzPlacement="bottomCenter"
+      nzTitle="Trang chủ"
+      class="uppercase"
+      [routerLink]="['/common/home']"
+    ></li>
+    <li
+      nz-submenu
+      nzPlacement="bottomCenter"
+      nzTitle="Loại Sản Phẩm"
+      class="uppercase"
+    >
+      <ul class="" *ngFor="let category of categoryList">
+        <li nz-submenu nzTitle="{{ category.categoryName }}">
+          <ul *ngFor="let sub of category.subCategories">
+            <li nz-menu-item (click)="onNavigate(sub)">
+              {{ sub.subCategoryName }}
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li
+      nz-submenu
+      nzPlacement="bottomCenter"
+      nzTitle="Giới thiệu"
+      class="uppercase"
+    ></li>
+    <li
+      nz-submenu
+      nzPlacement="bottomCenter"
+      nzTitle="Thủ tục cho thuê"
+      class="uppercase"
+      routerLink="/common/howitorder"
+    ></li>
+  </ul>
+</div>

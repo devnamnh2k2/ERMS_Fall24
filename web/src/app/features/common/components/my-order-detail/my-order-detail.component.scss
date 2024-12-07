@@ -1,0 +1,19 @@
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+::ng-deep .ant-timeline-item-content{
+  font-size: 12px;
+}
+
+::ng-deep .anticon-star {
+  font-size: x-large;
+}
+::ng-deep .ant-modal-footer{
+  display: none;
+}
+::ng-deep .ant-modal-close-x{
+  display: none;
+}

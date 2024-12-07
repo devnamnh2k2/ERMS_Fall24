@@ -1,0 +1,35 @@
+<nz-footer class="pt-16 pb-14 bg-white border-t-2 border-[#ededed]">
+  <div class="flex justify-around">
+    <a [routerLink]="['']">
+      <img
+        class="logo m-1 ms-0 h-24"
+        src="assets/images/logo.png"
+        alt="main-logo"
+      />
+    </a>
+    <div>
+      <h1 class="text-blue-500 mb-4 font-bold text-lg">Chuyển hướng</h1>
+      <p class="mb-4">
+        <a [routerLink]="['#aboutus']">Về chúng tôi</a>
+      </p>
+      <p class="mb-4">
+        <a [routerLink]="[' #homepage']">Trang chủ</a>
+      </p>
+      <p class="mb-4">
+        <a [routerLink]="['#procedure-process']">Tiến trình cho thuê</a>
+      </p>
+    </div>
+    <div>
+      <h1 class="text-blue-500 mb-4 font-bold text-lg">Thông tin liên hệ</h1>
+      <div>
+        Hỗ trợ sử dụng: <span>1900 633 680 / 028 7301 3680</span>
+        <span>support{{ "@" }}tempi.vn</span>
+      </div>
+      <div>
+        Đề nghị hợp tác, đề xuất tài trợ: <span>doitac{{ "@" }}tempi.vn</span>
+      </div>
+    </div>
+    <div></div>
+    <div></div>
+  </div>
+</nz-footer>

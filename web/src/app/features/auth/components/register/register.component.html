@@ -1,0 +1,171 @@
+<div class="pt-5">
+  <h2 class="font-bold text-4xl uppercase">Đăng ký tài khoản</h2>
+  <p class="text-base text-gray-700 mt-2">
+    Bạn đã có tài khoản?
+    <a
+      class="text-blue-400 hover:text-blue-600 mx-2"
+      [routerLink]="['/auth/login']"
+      >Đăng nhập</a
+    >
+  </p>
+</div>
+<ng-container *ngIf="!(isEmailVerifySuccess$ | async); else verifyEmailTpl">
+  <form
+    nz-form
+    [formGroup]="forminfocommongroup"
+    (ngSubmit)="submitTabFinall()"
+  >
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="24"
+        [nzXs]="24"
+        nzRequired
+        nzFor="firstName"
+        class="text-start"
+        >Tên</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="24"
+        [nzXs]="24"
+        nzErrorTip="Nhập tên của bạn là bắt buộc!"
+      >
+        <nz-input-group>
+          <input
+            type="text"
+            placeholder="A"
+            formControlName="firstName"
+            nz-input
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="24"
+        [nzXs]="24"
+        nzRequired
+        nzFor="lastName"
+        class="text-start"
+        >Họ Và Tên Đệm</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="24"
+        [nzXs]="24"
+        nzErrorTip="Nhập họ và tên đệm của bạn là bắt buộc!"
+      >
+        <nz-input-group>
+          <input
+            type="text"
+            placeholder="Nguyen Van"
+            formControlName="lastName"
+            nz-input
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="24"
+        [nzXs]="24"
+        nzRequired
+        nzFor="email"
+        class="text-start"
+        >Email</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="24"
+        [nzXs]="24"
+        [nzErrorTip]="
+          forminfocommongroup.get('email')?.hasError('required')
+            ? 'Nhập email là bắt buộc!'
+            : forminfocommongroup.get('email')?.hasError('email')
+            ? 'Nhập email không hợp lệ!'
+            : forminfocommongroup.get('email')?.hasError('emailExists')
+            ? 'Email đã tồn tại!'
+            : ''
+        "
+      >
+        <nz-input-group>
+          <input
+            type="email"
+            placeholder="nguyenvana@gmail.com"
+            formControlName="email"
+            nz-input
+          />
+        </nz-input-group>
+        <small *ngIf="forminfocommongroup.get('email')?.pending"
+          >Đang kiểm tra email...</small
+        >
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="24"
+        [nzXs]="24"
+        nzRequired
+        nzFor="username"
+        class="text-start"
+        >Tên người dùng</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="24"
+        [nzXs]="24"
+        nzErrorTip="Nhập tên người dùng là bắt buộc!"
+      >
+        <nz-input-group>
+          <input
+            type="text"
+            placeholder="nguyenvana1999"
+            formControlName="username"
+            nz-input
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="24"
+        [nzXs]="24"
+        nzRequired
+        nzFor="password"
+        class="text-start"
+        >Mật khẩu</nz-form-label
+      >
+      <nz-form-control
+        [nzSm]="24"
+        [nzXs]="24"
+        nzErrorTip="Nhập mật khẩu không hợp lệ! Vui lòng nhập lại!"
+      >
+        <nz-input-group [nzSuffix]="suffixTemplate">
+          <input
+            [type]="!isPasswordVisible ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="**********"
+            nz-input
+          />
+          <ng-template #suffixTemplate>
+            <i
+              nz-icon
+              [nzType]="isPasswordVisible ? 'eye-invisible' : 'eye'"
+              (click)="isPasswordVisible = !isPasswordVisible"
+            ></i>
+          </ng-template>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <button nz-button type="submit" class="w-full mt-2" [nzType]="'primary'">
+        Tiếp Tục
+      </button>
+    </nz-form-item>
+    <div></div>
+  </form>
+</ng-container>
+
+<ng-template #verifyEmailTpl>
+  <app-verify-email
+    (onResendCode)="sendOtpCode()"
+    (onChangeEmailStepFirst)="changeEmail()"
+    (onVerifyOtpCode)="verifyOtpCode($event)"
+  />
+</ng-template>

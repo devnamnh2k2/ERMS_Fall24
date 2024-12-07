@@ -1,0 +1,21 @@
+<nz-comment
+  class="mt-3"
+  nzAuthor="{{ comment.userName }}"
+  [nzDatetime]="calculateTime(comment.createdDate)"
+>
+  <nz-avatar
+    nz-comment-avatar
+    nzIcon="user"
+    [nzSrc]="
+      comment.avatarPersonal
+        ? comment.avatarPersonal
+        : '/assets/images/default-avatar.jpg'
+    "
+  ></nz-avatar>
+  <nz-comment-content>
+    <nz-rate class="text-xs" [ngModel]="comment.rating" nzDisabled></nz-rate>
+    <p>
+      {{ comment.comment }}
+    </p>
+  </nz-comment-content>
+</nz-comment>
