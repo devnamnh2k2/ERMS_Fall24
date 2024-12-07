@@ -38,7 +38,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 import { getStorage, provideStorage } from '@angular/fire/storage';
-import { environment } from '../environments/environment.development';
+import { environment } from '../environments/environment.dev';
 import {AngularFireModule} from '@angular/fire/compat'
 import { chatResizeFeature } from './features/chat/state/chat.reducer';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';

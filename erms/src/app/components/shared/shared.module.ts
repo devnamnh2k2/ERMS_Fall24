@@ -53,7 +53,7 @@ import { NzTimelineModule } from 'ng-zorro-antd/timeline';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment.dev';
 import { NumberOnlyDirective } from '../../directives/number-only.directive';
 import { ErrorComponent } from '../../features/error/error.component';
 import { AnonymousComponent } from '../anonymous/anonymous.component';
