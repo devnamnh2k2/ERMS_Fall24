@@ -1,4 +1,4 @@
-import { environment } from '../../../environment.development';
+import { environment } from '../../environments/environment.development';
 
 const cookiePrf = 'ERMS_';
 
